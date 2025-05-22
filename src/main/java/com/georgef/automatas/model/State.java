@@ -9,6 +9,10 @@ import java.util.Objects;
 public class State {
     String label;
 
+    public String getLabel() {
+        return label;
+    }
+
     public State(String label) {
         this.label = label;
     }
