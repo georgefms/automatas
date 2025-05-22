@@ -1,13 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.georgef.automatas.model;
+
+import java.util.Objects;
 
 /**
  *
  * @author georgef
  */
 public class State {
-    
+    String label;
+
+    public State(String label) {
+        this.label = label;
+    }
+
+    @Override
+    public String toString() {
+        return label;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(label);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof State)) return false;
+        State state = (State) obj;
+        return Objects.equals(label, state.label);
+    }
 }
