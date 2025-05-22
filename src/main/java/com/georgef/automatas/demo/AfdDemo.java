@@ -1,9 +1,11 @@
 package com.georgef.automatas.demo;
 
 import com.georgef.automatas.core.AFDAutomata;
+//import com.georgef.automatas.core.AFText;
 import com.georgef.automatas.model.State;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,14 +26,14 @@ public class AfdDemo {
         afd.defineInitial(q0);
         afd.addFinalState(q0);
 
-        afd.AddTransition(q0, '0', q0);
-        afd.AddTransition(q0, '1', q1);
-        afd.AddTransition(q1, '0', q2);
-        afd.AddTransition(q1, '1', q3);
-        afd.AddTransition(q2, '0', q0);
-        afd.AddTransition(q2, '1', q3);
-        afd.AddTransition(q3, '0', q3);
-        afd.AddTransition(q3, '1', q3);
+        afd.addTransition(q0, '0', q0);
+        afd.addTransition(q0, '1', q1);
+        afd.addTransition(q1, '0', q2);
+        afd.addTransition(q1, '1', q3);
+        afd.addTransition(q2, '0', q0);
+        afd.addTransition(q2, '1', q3);
+        afd.addTransition(q3, '0', q3);
+        afd.addTransition(q3, '1', q3);
 
         //Deve aceitar todas: 
         System.out.println("Cadeia 0: " + afd.process("0"));
@@ -58,14 +60,14 @@ public class AfdDemo {
         afd.defineInitial(q0);
         afd.addFinalState(q2);
         
-        afd.AddTransition(q0, 'a', q1);
-        afd.AddTransition(q0, 'b', q2);
-        afd.AddTransition(q1, 'a', q0);
-        afd.AddTransition(q1, 'b', q3);
-        afd.AddTransition(q2, 'a', q1);
-        afd.AddTransition(q2, 'b', q2);
-        afd.AddTransition(q3, 'a', q0);
-        afd.AddTransition(q3, 'b', q3);
+        afd.addTransition(q0, 'a', q1);
+        afd.addTransition(q0, 'b', q2);
+        afd.addTransition(q1, 'a', q0);
+        afd.addTransition(q1, 'b', q3);
+        afd.addTransition(q2, 'a', q1);
+        afd.addTransition(q2, 'b', q2);
+        afd.addTransition(q3, 'a', q0);
+        afd.addTransition(q3, 'b', q3);
         
         //aceitas
         System.out.println("Cadeia b: " +afd.process("b"));
@@ -80,5 +82,19 @@ public class AfdDemo {
         System.out.println("Cadeia aba: " +afd.process("aba"));
     };
     
-    
+    public static void runnerCase3(){
+        String text = "O computador é uma máquina capaz de variados tipos de tratamento automático de informações ou processamento de dados. Entende-se por computador um sistema físico que realiza algum tipo de computação. Assumiu-se que os computadores pessoais e laptops são ícones da era da informação.O primeiro computador eletromecânico foi construído por Konrad Zuse (1910–1995).  Atualmente, um microcomputador é também chamado computador pessoal ou ainda computador doméstico.";
+
+        AFDAutomata afdText = new AFDAutomata();
+
+        afdText.textSetup("computador");
+        
+        List<Integer> positions = afdText.findOccurrences(text);
+
+        System.out.println("Ocorrências exatas de 'computador':");
+        for (int pos : positions) {
+            System.out.println("Posição: " + pos + " | Contexto: ..." + text.substring(Math.max(0, pos - 10), Math.min(text.length(), pos + 20)) + "...");
+        }
+    }
+
 }

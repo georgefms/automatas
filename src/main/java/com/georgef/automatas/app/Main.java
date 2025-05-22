@@ -15,5 +15,6 @@ public class Main {
     public static void main(String[] args) {
         AfdDemo.runnerCase1();
         AfdDemo.runnerCase2();
+        AfdDemo.runnerCase3();
     }
 }
