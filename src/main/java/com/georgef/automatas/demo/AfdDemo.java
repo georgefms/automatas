@@ -1,7 +1,6 @@
 package com.georgef.automatas.demo;
 
 import com.georgef.automatas.core.AFDAutomata;
-//import com.georgef.automatas.core.AFText;
 import com.georgef.automatas.model.State;
 import java.util.Arrays;
 import java.util.HashSet;
