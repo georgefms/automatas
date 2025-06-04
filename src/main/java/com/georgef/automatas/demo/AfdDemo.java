@@ -1,6 +1,7 @@
 package com.georgef.automatas.demo;
 
 import com.georgef.automatas.core.AFDAutomata;
+import com.georgef.automatas.core.AFDMealy;
 import com.georgef.automatas.model.State;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -94,6 +95,41 @@ public class AfdDemo {
         for (int pos : positions) {
             System.out.println("Posição: " + pos + " | Contexto: ..." + text.substring(Math.max(0, pos - 10), Math.min(text.length(), pos + 20)) + "...");
         }
+    }
+    
+    public static void runnerCase4(){
+        AFDMealy machine = new AFDMealy();
+
+        // Estados representam o total acumulado: q0 = 0, q25 = 25, q50 = 50, ..., q75, q100, etc.
+        State q0 = new State("q0");
+        State q25 = new State("q25");
+        State q50 = new State("q50");
+        State q75 = new State("q75");
+
+        machine.defineInitialState(q0);
+
+        // Transições com acúmulo e liberação (transborda para reutilização do troco)
+        machine.addTransition(q0, 25, q25, 0);
+        machine.addTransition(q0, 50, q50, 0);
+        machine.addTransition(q0, 100, q0, 1);
+
+        machine.addTransition(q25, 25, q50, 0);
+        machine.addTransition(q25, 50, q75, 0);
+        machine.addTransition(q25, 100, q0, 1); // 25 + 100 = 125 -> libera e reinicia com 25 de troco
+
+        machine.addTransition(q50, 25, q75, 0);
+        machine.addTransition(q50, 50, q0, 1);
+        machine.addTransition(q50, 100, q25, 1);
+
+        machine.addTransition(q75, 25, q0, 1);
+        machine.addTransition(q75, 50, q25, 1);
+        machine.addTransition(q75, 100, q50, 1);
+
+        List<Integer> entry = Arrays.asList(100,25, 25, 25, 25,100,50,50,100,100,25,50,25,50,25,25,100);
+        List<Integer> result = machine.process(entry);
+
+        System.out.println("Entrada: " + entry);
+        System.out.println("Saída:   " + result);
     }
 
 }

@@ -13,8 +13,10 @@ import com.georgef.automatas.demo.AfdDemo;
 public class Main {
 
     public static void main(String[] args) {
-        AfdDemo.runnerCase1();
-        AfdDemo.runnerCase2();
-        AfdDemo.runnerCase3();
+        //AfdDemo.runnerCase1();
+        //AfdDemo.runnerCase2();
+       // AfdDemo.runnerCase3();
+        AfdDemo.runnerCase4();
+
     }
 }
