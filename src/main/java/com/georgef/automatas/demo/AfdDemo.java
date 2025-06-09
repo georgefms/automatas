@@ -93,7 +93,8 @@ public class AfdDemo {
 
         System.out.println("Ocorrências exatas de 'computador':");
         for (int pos : positions) {
-            System.out.println("Posição: " + pos + " | Contexto: ..." + text.substring(Math.max(0, pos - 10), Math.min(text.length(), pos + 20)) + "...");
+            System.out.println("Posição: " + pos );
+            System.out.println("Pro: ..." + text.substring(Math.max(0, pos - 10), Math.min(text.length(), pos + 20)) + "...");
         }
     }
     
